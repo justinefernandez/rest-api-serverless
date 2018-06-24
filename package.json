@@ -1,0 +1,28 @@
+{
+  "name": "rest-api-serverless",
+  "version": "1.0.0",
+  "description": "Restful API Serverless using NodeJS",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinefernandez/rest-api-serverless.git"
+  },
+  "author": "Justine Fernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinefernandez/rest-api-serverless/issues"
+  },
+  "homepage": "https://github.com/justinefernandez/rest-api-serverless#readme",
+  "dependencies": {
+    "jsonwebtoken": "^8.3.0",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.3",
+    "sequelize": "^4.38.0",
+    "serverless-offline": "^3.25.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.0"
+  }
+}

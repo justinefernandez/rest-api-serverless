@@ -1,0 +1,26 @@
+service: rest-api-serverless
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  environment: ${file(./env.yml):${self:provider.stage}}
+
+functions:
+  createuser:
+    handler: api/create.createUser
+    events:
+      - http:
+          path: /create/user
+          method: post
+          cors: true
+  authlogin:
+    handler: api/login.login
+    events:
+      - http:
+          path: /login
+          method: post
+          cors: true
+
+plugins:
+  - serverless-offline
