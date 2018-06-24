@@ -21,6 +21,13 @@ functions:
           path: /login
           method: post
           cors: true
+  createpost:
+    handler: api/create.createPost
+    events:
+      - http:
+          path: /create/post
+          method: post
+          cors: true
 
 plugins:
   - serverless-offline

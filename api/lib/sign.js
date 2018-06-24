@@ -6,16 +6,32 @@ module.exports = {
         return jwt.sign(obj, secret);
     },
 
-    // verify: function(token, secret){
-    //     return new Promise(function(resolve, reject){
-    //         jwt.verify(token, secret, function(err, decode){
-    //             if (err){
-    //                 reject(err)
-    //                 return
-    //             }
-
-    //             resolve(decode)
-    //         })
-    //     })
-    // }
+    verify: function(event){
+        return new Promise((resolve, reject) => {
+            if (event.headers.Authorization && event.headers) {
+                const bearerHeader = event.headers.Authorization;
+                const bearer = bearerHeader.split(' ');
+                const bearerToken = bearer[1];
+                jwt.verify(bearerToken, 'secretkey', (err, authdata) => {
+                    if (err) {
+                        var err = {
+                            'message': 'Invalid Token'
+                        };
+                        reject (err);
+                    } else {
+                        var param = {
+                            status: 200,
+                            authdata
+                        };
+                        resolve(param);
+                    }
+                });
+            } else {
+                var err = {
+                    'message': 'Missing Authorization'
+                };
+                reject(err);
+            };
+        });
+    },
 };

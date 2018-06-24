@@ -3,6 +3,7 @@
 var User = require('./models/Users.js');
 var JWT = require('./lib/sign.js');
 
+
 module.exports.login = async (event, context, callback) => {
     context.callbackWaitsFupdateV2orEmptyEventLoop = false; 
     var data = JSON.parse(event.body);
@@ -13,11 +14,9 @@ module.exports.login = async (event, context, callback) => {
             'password' : data.password
         } 
     }).then( result => {
-        console.log("hi");
         console.log(result);
         return result;
     });
-    console.log("hello");
     console.log(userFound);
     if (userFound) {
         const verifytoken = await JWT.sign(userFound.dataValues.id, 'secretkey');
@@ -39,6 +38,4 @@ module.exports.login = async (event, context, callback) => {
         };
         return response;  
     }
-
-
 };
