@@ -35,6 +35,32 @@ functions:
           path: /create/tag
           method: post
           cors: true
+  deleteuser:
+    handler: api/delete.deleteUser
+    events:
+      - http:
+          path: /delete/user/{id}
+          method: delete
+          cors: true
+  deletepost:
+    handler: api/delete.deletePost
+    events:
+      - http:
+          path: /delete/post/{id}
+          method: delete
+          cors: true
+  deletetag:
+    handler: api/delete.deleteTag
+    events:
+      - http:
+          path: /delete/tag/{id}
+          method: delete
+          cors: true
+
+
+
+
+
 
 plugins:
   - serverless-offline
