@@ -77,8 +77,48 @@ functions:
           path: /list/tag
           method: get
           cors: true
-
-
+  updateuser:
+    handler: api/update.updateUser
+    events:
+      - http:
+          path: /update/user/{id}
+          method: put
+          cors: true
+  updatepost:
+    handler: api/update.updatePost
+    events:
+      - http:
+          path: /update/post/{id}
+          method: put
+          cors: true
+  updatetag:
+    handler: api/update.updateTag
+    events:
+      - http:
+          path: /update/tag/{id}
+          method: put
+          cors: true
+  getuser:
+    handler: api/get.getUser
+    events:
+      - http:
+          path: /get/user/{id}
+          method: get
+          cors: true
+  getpost:
+    handler: api/get.getPost
+    events:
+      - http:
+          path: /get/post/{id}
+          method: get
+          cors: true
+  gettag:
+    handler: api/get.getTag
+    events:
+      - http:
+          path: /get/tag/{id}
+          method: get
+          cors: true
 
 plugins:
   - serverless-offline
