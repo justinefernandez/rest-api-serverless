@@ -28,6 +28,13 @@ functions:
           path: /create/post
           method: post
           cors: true
+  createtag:
+    handler: api/create.createTag
+    events:
+      - http:
+          path: /create/tag
+          method: post
+          cors: true
 
 plugins:
   - serverless-offline

@@ -3,6 +3,7 @@
 var User = require('./models/Users.js');
 var JWT = require('./lib/sign.js');
 var Post = require('./models/Posts.js');
+var Tag = require('./models/Tags.js');
 
 module.exports.createUser = async (event, context, callback) => {
   const data = JSON.parse(event.body);
@@ -76,6 +77,81 @@ module.exports.createPost = (event, context, callback) => {
                 headers: { 'Content-Type': 'text/plain' },
                 body: err.message?err.message: 'Invalid Token',
             };
+            console.log(response);
+            callback(null, response);
+        });
+};
+
+module.exports.createTag = (event, context, callback) => {
+    JWT.verify(event)
+        .then((response) => {
+            context.callbackWaitsForEmptyEventLoop = false;
+            const timestamp = new Date().getTime();
+            var data = JSON.parse(event.body);
+            
+            console.log(data.tag)
+            if (typeof data.tag === 'undefined'){
+                context.callbackWaitsForEmptyEventLoop = false;
+                const response = {
+                    statusCode: 400,
+                    headers: { 'Content-Type': 'text/plain' },
+                    body: 'Missing Parameters',
+                }
+                console.log(response);
+                callback(null, response);
+            } else {
+                const params = {
+                    tag: data.tag,
+                    createdAt: timestamp,
+                    updatedAt: timestamp,
+                };
+                Tag.findOrCreate({
+                    where:{
+                        'tag': params.tag
+                    },
+                        defaults: params
+                    }).spread(function(tag, created){
+                        var response = {};
+                        if (created) {
+                            response = {
+                                statusCode: 200,
+                                body: "Created new tag",
+                            };
+                        } else {
+                            response = {
+                                statusCode: 200,
+                                body: "Tag already exist",
+                            };
+                        }
+                        callback(null, response);
+            
+                    }).catch(function(err){
+                        console.log('Error occured', err);
+                        const response = {
+                            statusCode: 200,
+                            body: JSON.stringify(err),
+                        };
+                        callback(null, response);
+                    });
+                // Tag.create(params).then( 
+                //     tag => {
+                //         const response = {
+                //             statusCode: 200,
+                //             body: JSON.stringify(tag),
+                //         };
+                //         callback(null, response);
+                //     });
+            }
+
+
+        })
+        .catch((err) => {
+            context.callbackWaitsForEmptyEventLoop = false;
+            const response = {
+                statusCode: 400,
+                headers: { 'Content-Type': 'text/plain' },
+                body: err.message?err.message: 'Invalid Token',
+            }
             console.log(response);
             callback(null, response);
         });
