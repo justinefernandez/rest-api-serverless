@@ -56,9 +56,27 @@ functions:
           path: /delete/tag/{id}
           method: delete
           cors: true
-
-
-
+  listuser:
+    handler: api/list.listUser
+    events:
+      - http:
+          path: /list/user
+          method: get
+          cors: true
+  listpost:
+    handler: api/list.listPost
+    events:
+      - http:
+          path: /list/post
+          method: get
+          cors: true
+  listtag:
+    handler: api/list.listTag
+    events:
+      - http:
+          path: /list/tag
+          method: get
+          cors: true
 
 
 
