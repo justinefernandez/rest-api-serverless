@@ -30,7 +30,10 @@ Requirements:
   - NodeJS 8
   - JSONWebtoken
   - Sequelize package
-  - mysql2 & mysql package
+  - mysql2 & mysql
+  - eslint 
+  - VSCode
+  - Serverless
   
 
 Curl Commads:
