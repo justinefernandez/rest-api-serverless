@@ -1,6 +1,17 @@
 # serverless-rest-api
 RESTFULAPI using Serverless and NodeJS with JWT
 
+Requirements:
+  - AWS Account
+  - Serverless
+  - NodeJS 8
+  - JSONWebtoken
+  - Sequelize package
+  - mysql2 & mysql
+  - eslint 
+  - VSCode
+  - Serverless
+
 Tutorial Guide:
 
 Create AWS User Account
@@ -24,17 +35,7 @@ Create a package.json file
 Deploy serverless
 
     $ serverless deploy
-
-Requirements:
-  - Serverless
-  - NodeJS 8
-  - JSONWebtoken
-  - Sequelize package
-  - mysql2 & mysql
-  - eslint 
-  - VSCode
-  - Serverless
-  
+ 
 
 Curl Commads:
 
