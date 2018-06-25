@@ -53,7 +53,7 @@ module.exports.createPost = (event, context, callback) => {
             var data = JSON.parse(event.body);
 
             const params = {
-                username: response.username,
+                username: data.username,
                 post: data.post,
                 tag: data.tag,
                 createdAt: timestamp,
